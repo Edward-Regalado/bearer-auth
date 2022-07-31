@@ -1,0 +1,12 @@
+GET http://localhost:3000
+# Authorization: Bearer
+// paste token authentication here
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "username": "Tony,
+
+}
