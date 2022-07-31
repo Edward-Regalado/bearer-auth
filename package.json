@@ -4,7 +4,10 @@
   "description": " Express server that implements Basic Authentication, with signup and signin capabilities, using a Postgres database for storage.",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch --coverage"
   },
   "repository": {
     "type": "git",
@@ -17,9 +20,11 @@
   },
   "homepage": "https://github.com/Edward-Regalado/basic-auth#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "install": "^0.13.0",
+    "method-override": "^3.0.0",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.19",
     "pg": "^8.7.3",
