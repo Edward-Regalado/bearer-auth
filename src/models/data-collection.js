@@ -1,7 +1,7 @@
 'use strict';
 
 class Collection {
-    constructor(mode) {
+    constructor(model) {
         this.model = model; // creates an encapsulated reference to the SQL model { schema, queryInterface }
         this.association = new Map(); // map structure to hold our associated model for a many-to-many association
     }
@@ -19,8 +19,8 @@ class Collection {
     }
 
     async read(id) {
-        let options = { includes: [...this.associations.keys()]};
-        let records = null;
+        let options = { includes: [...this.association.keys()]};
+        let items = null;
 
         if(id) {
             options['where'] = { id };
@@ -69,7 +69,7 @@ class Collection {
         if(!this.association.has(association.collection.model)){
             throw new Error("No association found for that collection");
         }
-        let associatedModel = this.associations.get(association.collection.model);
+        let associatedModel = this.association.get(association.collection.model);
         let associatedModelRecord = await associatedModel.create({
             [`${this.model.name}Id`]: record.id,
             [`${association.collection.model.name}Id`]: association.id,

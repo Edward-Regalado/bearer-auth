@@ -1,7 +1,7 @@
 'use strict';
 
 const serverErrorHandler = (err, req, res, next) => {
-    
+
     const errorObject = {
         error: err || err.message,
         route: req.path,
@@ -13,6 +13,4 @@ const serverErrorHandler = (err, req, res, next) => {
     res.status(500).json(errorObject);
 };
 
-module.exports = {
-    serverErrorHandler,
-};
+module.exports = serverErrorHandler;

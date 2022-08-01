@@ -1,5 +1,6 @@
 'use strict';
 
+const { request } = require('express');
 const express = require('express');
 
 const clothesCollection = require('../models/index.js').Clothes;
@@ -33,6 +34,12 @@ async function createClothes(req, res) {
 }
 
 async function updateClothes(req, res) {
+    let id = req.params.id;
+    let item = await clothesCollection.delete(id);
+    res.status(200).json(item);
+}
+
+async function deleteClothes(req, res) {
     let id = req.params.id;
     let item = await clothesCollection.delete(id);
     res.status(200).json(item);
