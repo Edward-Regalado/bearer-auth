@@ -39,12 +39,12 @@ async function handleGetAll(req, res) {
 }
 
 async function handleGetOne(req, res) {
-    let obj = req.params.id;
+    let id = req.params.id;
     let item = await req.model.get(id);
     res.status(200).json(item);
 }
 
-async function handleCreate(req, res) {
+async function handlerCreate(req, res) {
     let obj = req.body;
     let item = await req.model.create(obj);
     res.status(200).json(item);

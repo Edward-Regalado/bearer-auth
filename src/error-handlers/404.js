@@ -13,6 +13,4 @@ const notFoundErrorHandler = (err, req, res, next) => {
     res.status(404).json(errorObject);
 };
 
-module.exports = {
-    notFoundErrorHandler,
-}
+module.exports = notFoundErrorHandler;

@@ -6,7 +6,7 @@ const DATABASE_URL =
   process.env.NODE_ENV === 'test'
     ? 'sqlite::memory:'
     : process.env.DATABASE_URL;
-    
+
 const { Sequelize, DataTypes } = require('sequelize');
 
 const Collection = require('./data-collection.js');
@@ -40,7 +40,7 @@ const sequelizeOptions = {
     : {}),
 };
 
-// turn schemas into Sequelize models
+// turn schemas into Sequelize ORM models
 const sequelize = new Sequelize(DATABASE_URL, sequelizeOptions);
 const FoodModel = foodSchema(sequelize, DataTypes);
 const ClothesModel = clothesSchema(sequelize, DataTypes);

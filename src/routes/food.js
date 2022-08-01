@@ -4,8 +4,6 @@ const express = require('express');
 
 const FoodCollection = require('../models/index.js').Food;
 
-// const app = express();
-
 const router = express.Router();
 
 // RESTful Route Declarations
@@ -23,7 +21,7 @@ async function getFood(req, res) {
 
 async function getOneFood(req, res) {
   const id = req.params.id;
-  let item = await FoodCollection.read(id)
+  let item = await FoodCollection.read(id);
   res.status(200).json(item);
 }
 
@@ -36,15 +34,21 @@ async function createFood(req, res) {
 async function updateFood(req, res) {
   const id = req.params.id;
   const obj = req.body;
-  let item = await FoodCollection.update(id, obj)
+  let item = await FoodCollection.update(id, obj);
   res.status(200).json(item);
 }
 
 async function deleteFood(req, res) {
-  let id = req.params.id;
-  let item = await FoodCollection.delete(id);
-  res.status(200).json(item);
-}
+
+    // if(req.user && req.user.role != 'admin') // This does not work
+    if(req.user?.role != 'admin'){
+       res.status(403).send('unauthorized for this action');
+    } else {
+        let id = req.params.id;
+        let item = await FoodCollection.delete(id);
+        res.status(200).json(item);
+      }
+    }
 
 
 module.exports = router;
